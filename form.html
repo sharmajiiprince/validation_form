@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container mt-3">
+        <h3>Vallidation Form</h3>
+        <div class="row">
+            <div class="col-sm-8">
+                <form onsubmit="return validation()">
+                    <div class="form-group">
+                        <label for="">FirstName</label>
+                        <input type="text" class="form-control" id="fname">
+                        <span id="fnamerror" class="text-danger font-weight-bold"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="">LastName</label>
+                        <input type="text" class="form-control" id="lname">
+                        <span id="lnamerror" class="text-danger font-weight-bold"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Email</label>
+                        <input type="email" class="form-control" id="email">
+                        <span id="emailerror" class="text-danger font-weight-bold"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Age</label>
+                        <input type="number" class="form-control" id="age">
+                        <span id="agerror" class="text-danger font-weight-bold"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Contact No</label>
+                        <input type="number" class="form-control" id="contact">
+                        <span id="contacterror" class="text-danger font-weight-bold"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Password</label>
+                        <input type="password" class="form-control" id="password">
+                        <span id="passerror" class="text-danger font-weight-bold"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Confirm Password No</label>
+                        <input type="password" class="form-control" id="cpassword">
+                        <span id="cpasserror" class="text-danger font-weight-bold"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" class="btn btn-success mt-3">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        function validation() {
+            var firstname = document.getElementById('fname').value;
+            var lastname = document.getElementById('lname').value;
+            var email = document.getElementById('email').value;
+            var age = document.getElementById('age').value;
+            var contact = document.getElementById('contact').value;
+            var password = document.getElementById('password').value;
+            var cpassword = document.getElementById('cpassword').value;
+
+
+            var namecheck = /^[A-Za-z. ]{3,30}$/;
+            var emailcheck = /^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$/;
+            var passcheck = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+            var mobilecheck = /^[789][0-9]{9}$/;
+            var agecheck = /^[0-9]{1}$/;
+
+            //firstname
+            if (namecheck.test(firstname)) {
+                document.getElementById('fnamerror').innerHTML = " ";
+            }
+            else if(namecheck==" "){
+                document.getElementById('fnamerror').innerHTML="** please inter the name "
+            }
+            else {
+                document.getElementById('fnamerror').innerHTML = "** Username is invalid ";
+                return false;
+            }
+
+            //lastname
+            if (namecheck.test(lastname)) {
+                document.getElementById('lnamerror').innerHTML = " ";
+            }
+            else {
+                document.getElementById('lnamerror').innerHTML = "** Username is invalid ";
+                return false;
+            }
+
+            //email
+            if (emailcheck.test(email)) {
+                document.getElementById('emailerror').innerHTML = " ";
+            }
+            else {
+                document.getElementById('emailerror').innerHTML = "** invalid email i'd ";
+                return false;
+            }
+
+            //age
+            if (agecheck.test(age)) {
+                document.getElementById('agerror').innerHTML = " ";
+            }
+            else {
+                document.getElementById('agerror').innerHTML = "** inavlid age..";
+                return false;
+            }
+
+            //contact
+            if (mobilecheck.test(contact)) {
+                document.getElementById('contacterror').innerHTML = " ";
+            }
+            else {
+                document.getElementById('contacterror').innerHTML = "** inavlid number ..";
+                return false;
+            }
+
+            //password
+            if (passcheck.test(password)) {
+                document.getElementById('passerror').innerHTML = " ";
+            }
+            else {
+                document.getElementById('passerror').innerHTML = "** inavlid password.";
+                return false;
+            }
+
+            //confrom passworrd
+            if (cpassword == password && passcheck.test(cpassword)) {
+                document.getElementById('cpasserror').innerHTML = " ";
+            }
+            else {
+                document.getElementById('cpasserror').innerHTML = "** inavlid password.";
+                return false;
+            }
+        }
+
+
+    </script>
+
+</body>
+
+</html>
